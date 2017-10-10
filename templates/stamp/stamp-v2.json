@@ -2,6 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "virtualNetworkName": {
+            "type": "string",
+            "defaultValue": "SNL-PROD"
+        },
+        "subNetName": {
+            "type": "string",
+            "defaultValue": "default"
+        },
         "clusterName": {
             "type": "string",
             "maxLength": 12
@@ -37,7 +45,7 @@
         },
         "mongoVmSize": {
             "type": "string",
-            "defaultValue": "Standard_D2_v2",
+            "defaultValue": "Standard_D1_v2",
             "allowedValues": [
                 "Standard_D1_v2",
                 "Standard_D2_v2",
@@ -56,7 +64,7 @@
         },
         "mysqlVmSize": {
             "type": "string",
-            "defaultValue": "Standard_D2_v2",
+            "defaultValue": "Standard_D1_v2",
             "allowedValues": [
                 "Standard_D1_v2",
                 "Standard_D2_v2",
@@ -75,7 +83,7 @@
         },
         "frontendVmSize": {
             "type": "string",
-            "defaultValue": "Standard_D2_v2",
+            "defaultValue": "Standard_D1_v2",
             "allowedValues": [
                 "Standard_D1_v2",
                 "Standard_D2_v2",
@@ -676,8 +684,8 @@
         "storageContainer": "[concat('https://', variables('storageAccountName'),'.blob.core.windows.net/vhds/')]",
 
         "loadBalancerName": "[concat(parameters('clusterName'), '-lb-', parameters('deploymentSlot'))]",
-        "virtualNetworkName": "[concat(parameters('clusterName'), '-vnet')]",
-        "subnetName": "[concat(parameters('clusterName'), '-subnet')]",
+        "virtualNetworkName": "[parameters('virtualNetworkName')]",
+        "subnetName": "[parameters('subNetName')]",
         "bePoolName": "[concat(parameters('clusterName'), '-bepool-', parameters('deploymentSlot'))]",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "lbID": "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName'))]",
@@ -1053,9 +1061,7 @@
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "[variables('apiVersion')]",
             "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'shared-resources')]",
-                "mongoNodesLoop",
-                "mysqlMasterNodeLoop",
+                "[concat('Microsoft.Resources/deployments/', 'shared-resources')]",               
                 "keyVault"
             ],
             "properties": {
@@ -1087,98 +1093,7 @@
                     }
                 }
             }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "name": "[concat(variables('networkSettings').clusterMongoDataNodeName, copyindex(1))]",
-            "apiVersion": "[variables('apiVersion')]",
-            "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'shared-resources')]",
-                "keyVault"
-            ],
-            "copy": {
-                "name": "mongoNodesLoop",
-                "count": "[int(variables('networkSettings').mongoDataNodeCount)]"
-            },
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('mongoNodeTemplateUrl')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "networkSettings": {
-                        "value": "[variables('networkSettings')]"
-                    },
-                    "apiSettings": {
-                        "value": "[variables('apiSettings')]"
-                    },
-                    "machineSettings": {
-                        "value": "[variables('mongoMachineSettings')]"
-                    },
-                    "storageSettings": {
-                        "value": "[variables('storageSettings')]"
-                    },
-                    "customSettings": {
-                        "value": {
-                            "machineIndex": "[copyindex(1)]",
-                            "vmScripts": "[variables('mongoDBInstallerSettings').scriptsToDownload]",
-                            "adminUsername": "[variables('networkSettings').adminUsername]",
-                            "adminPassword": "[variables('networkSettings').mongoServerAdminPassword]",
-                            "machineNamePrefix": "[variables('networkSettings').clusterMongoDataNodeName]",
-                            "osImageReference": "[variables('mongoMachineSettings').osImageReference]",
-                            "vmSize": "[variables('mongoMachineSettings').vmSize]",
-                            "dataDiskSize": "[variables('mongoMachineSettings').dataDiskSize]",
-                            "commandToExecute": "[variables('mongoDBInstallerSettings').regularNodeInstallCommand]",
-                            "machineIpOffset": "[int(variables('networkSettings').mongoServerIpOffset)]"
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "name": "[concat(variables('networkSettings').clusterMysqlDataNodeName, copyindex(1))]",
-            "apiVersion": "[variables('apiVersion')]",
-            "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'shared-resources')]",
-                "keyVault"
-            ],
-            "copy": {
-                "name": "mysqlMasterNodeLoop",
-                "count": "[int(variables('networkSettings').mysqlDataNodeCount)]"
-            },
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('mysqlNodeTemplateUrl')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "networkSettings": {
-                        "value": "[variables('networkSettings')]"
-                    },
-                    "apiSettings": {
-                        "value": "[variables('apiSettings')]"
-                    },
-                    "machineSettings": {
-                        "value": "[variables('mysqlMachineSettings')]"
-                    },
-                    "storageSettings": {
-                        "value": "[variables('storageSettings')]"
-                    },
-                    "customSettings": {
-                        "value": {
-                            "machineIndex": "[copyindex(1)]",
-                            "vmScripts": "[variables('mysqlDBInstallerSettings').scriptsToDownload]",
-                            "commandToExecute": "[concat(variables('mysqlDBInstallerSettings').regularNodeInstallCommand, ' -n ', copyindex(1))]",
-                            "machineIpOffset": "[int(variables('networkSettings').mysqlServerIpOffset)]"
-                        }
-                    }
-                }
-            }
-        },
-
+        }, 
         {
             "name": "vmss",
             "type": "Microsoft.Resources/deployments",
@@ -1340,14 +1255,6 @@
         }
     ],
     "outputs": {
-        "mongoReplicaSetKey": {
-            "type": "string",
-            "value": "[variables('mongoReplicaSetKey')]"
-        },
-        "mongoReplicaSetName": {
-            "type": "string",
-            "value": "[variables('mongoReplicaSetName')]"
-        },
         "resourceGroupLocation": {
             "type": "string",
             "value": "[resourceGroup().location]"

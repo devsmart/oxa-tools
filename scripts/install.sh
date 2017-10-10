@@ -28,13 +28,13 @@ EDX_CONFIGURATION_PUBLIC_GITHUB_PROJECTBRANCH=""
 
 # EdX Platform
 # There are cases where we want to override the edx-platform repository itself
-EDX_PLATFORM_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_PLATFORM_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_PLATFORM_PUBLIC_GITHUB_PROJECTNAME="edx-platform"
 EDX_PLATFORM_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master"
 
 # EdX Theme
 # There are cases where we want to override the edx-platform repository itself
-EDX_THEME_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_THEME_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_THEME_PUBLIC_GITHUB_PROJECTNAME="edx-theme"
 EDX_THEME_PUBLIC_GITHUB_PROJECTBRANCH="pilot"
 
@@ -292,7 +292,7 @@ fi
 # Infrastracture Bootstrap - Install & Configure 3-node Replicated Mysql Server cluster & 3-node Mongo Server ReplicaSet
 # This execution is now generic and will account for machine roles
 # TODO: break out shared functionalities to utilities so that they can be called independently
-bash $CURRENT_PATH/bootstrap-db.sh -e $CLOUD_NAME --phase $BOOTSTRAP_PHASE --tools-version-override $OXA_TOOLS_PUBLIC_GITHUB_PROJECTBRANCH --keyvault-name $KEYVAULT_NAME --aad-webclient-id $AAD_WEBCLIENT_ID --aad-webclient-appkey $AAD_WEBCLIENT_APPKEY --aad-tenant-id $AAD_TENANT_ID --azure-subscription-id $AZURE_SUBSCRIPTION_ID --cluster-admin-email $CLUSTER_ADMIN_EMAIL --cluster-name $CLUSTER_NAME
+#bash $CURRENT_PATH/bootstrap-db.sh -e $CLOUD_NAME --phase $BOOTSTRAP_PHASE --tools-version-override $OXA_TOOLS_PUBLIC_GITHUB_PROJECTBRANCH --keyvault-name $KEYVAULT_NAME --aad-webclient-id $AAD_WEBCLIENT_ID --aad-webclient-appkey $AAD_WEBCLIENT_APPKEY --aad-tenant-id $AAD_TENANT_ID --azure-subscription-id $AZURE_SUBSCRIPTION_ID --cluster-admin-email $CLUSTER_ADMIN_EMAIL --cluster-name $CLUSTER_NAME
 exit_on_error "Phase 0 Bootstrap for Mongo & Mysql failed for $HOST" 1 "${MAIL_SUBJECT} Failed" "$CLUSTER_ADMIN_EMAIL" "$PRIMARY_LOG" "$SECONDARY_LOG"
 
 # OpenEdX Bootstrap (EdX Database - Mysql & EdX App - VMSS)

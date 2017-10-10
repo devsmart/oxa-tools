@@ -16,10 +16,10 @@ ENVIRONMENT=bvt
 ##########################
 
 # the site certificate files (.crt & .key) have to be named after the BASE_URL value
-BASE_URL=bvt.oxa.microsoft.com 
-LMS_URL=lms.$BASE_URL
-CMS_URL=cms.$BASE_URL
-PREVIEW_URL=preview.$BASE_URL
+BASE_URL=M365Training.social27.com
+LMS_URL=M365Training.social27.com
+CMS_URL=M365Training-cms.social27.com
+PREVIEW_URL=M365Training-preview.social27.com
 
 # deployment configuration
 # URL-building will be replaced by the use of LMS_URL | CMS_URL (above)
@@ -35,11 +35,11 @@ PLATFORM_NAME=
 PLATFORM_EMAIL=
 
 # config/versions.yml
-CONFIGURATION_REPO=https://github.com/Microsoft/edx-configuration.git
+CONFIGURATION_REPO=https://github.com/devsmart/edx-configuration.git
 CONFIGURATION_VERSION=oxa/master.fic
-PLATFORM_REPO=https://github.com/Microsoft/edx-platform.git
+PLATFORM_REPO=https://github.com/devsmart/edx-platform.git
 PLATFORM_VERSION=oxa/master.fic
-THEME_REPO=https://github.com/Microsoft/edx-theme.git
+THEME_REPO=https://github.com/devsmart/edx-theme.git
 THEME_VERSION=oxa/master.fic
 EDX_VERSION=open-release/ficus.master
 FORUM_VERSION=open-release/ficus.master
@@ -69,8 +69,8 @@ MONGO_USER=
 MONGO_PASSWORD=
 
 # Mongo Replicaset Credentials
-MONGO_REPLICASET_KEY=
-MONGO_REPLICASET_NAME={MONGO_REPLICASET_NAME}
+MONGO_REPLICASET_KEY=rs0
+MONGO_REPLICASET_NAME=rs0
 
 # MongoDB Installer Configurations
 MONGO_INSTALLER_SCRIPT=mongodb-ubuntu-install.sh
@@ -78,7 +78,7 @@ MONGO_INSTALLER_BASE_URL=http://repo.mongodb.org/apt/ubuntu
 MONGO_INSTALLER_PACKAGE_NAME=mongodb-org
 MONGO_SERVER_IP_PREFIX=10.0.0.
 MONGO_SERVER_IP_OFFSET=10
-MONGO_SERVER_LIST=10.0.0.11,10.0.0.12,10.0.0.13
+MONGO_SERVER_LIST=s27mongodb01r.social27.com,S27MongoDB02R.social27.com,s27mongoarb01r.social27.com
 
 ##########################
 # MYSQL
@@ -102,8 +102,8 @@ MYSQL_REPL_USER_PASSWORD=
 # Mysql Installer Configurations
 MYSQL_INSTALLER_SCRIPT=mysql-ubuntu-install.sh
 MYSQL_PACKAGE_VERSION="5.6"
-MYSQL_MASTER_IP=10.0.0.16
-MYSQL_SERVER_LIST=10.0.0.16,10.0.0.17,10.0.0.18
+MYSQL_MASTER_IP=10.0.0.4
+MYSQL_SERVER_LIST=10.0.0.4
 
 # Superuser Information (this gives front door access to the application. This value must be updated.)
 EDXAPP_SU_PASSWORD=

@@ -6,7 +6,7 @@
             "value": "M365TR"
         },
         "clusterNameDomainName": {
-            "value": "M365training.social27.com"
+            "value": "M365training"
         },
         "osFamilySpec": {
             "value": "ubuntu"
@@ -15,19 +15,19 @@
             "value": "Standard_D1_v2"
         },
         "mongoVmSize": {
-            "value": "Standard_D2_v2"
+            "value": "Standard_D1_v2"
         },
         "mysqlVmSize": {
-            "value": "Standard_D2_v2"
+            "value": "Standard_D1_v2"
         },
         "frontendVmSize": {
-            "value": "Standard_D2_v2"
+            "value": "Standard_D1_v2"
         },
         "adminUsername": {
             "value": "lexoxaadmin"
         },
         "adminPublicKey": {
-            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCiGXLUbQrEbpJV4QZLasxE+wnOUA+nPbTbYspIJP7BIDCK7sOt2YCx3v3xwtRphH2eSuMhgNpzxA2EARql0Ufd+fSWOJc1ZFbkoULJwukjG452jMDmbC2adx13ZITW3tUeSBSB4uqM64+dFDz5dPpz/jyiV0wSrseBCjK6r0Y37tGMLUsIzRXFVwZ8durFJ1Yz83L1RxsiZSr0oVDvul8Tz7RQB9OtEEm1XJ9ORTJrKGiY9QPfp/vV0vYFrgUlz8vkeo9U0KTPytr8WFsDSDkiHkpoEtoTI6+vb3esjWKJKocZbZORv1obhA/LzEBA9ZXqEoxMz3S8RNnTbo2j4PlCIwDevaqJX9s3vCZ5nEOqPm2oczZ9DKeGW7J5Rfq6QmnPAa1UJZ99Uuz4xNJK+1u71A0rbXneh3RxMvmYUVuWgo23LlNn7FG2LowNPRwwwtWeRbZG39eWdRrExRc3fVHZOjwGAr6qQQTQjMoa9UZ/HeOi6IP3qyDVGM6R1p+gVhX0quCxwUJ+pc+cRiomOojptzEnwhVwl4QCffyaB8UEq6FGoBxinUImmYG+LNAduh+Cd8+miBNrOwh+WyNldGOXLkaCmPALf3V4NPLK7ounWa6q5gPEiU5PlvpcxkTyBAxW5e0oWH8ZP1dmowWY5SxqVQqEpg7N6lxr8+iSumhStw== M365training@social27.com"
+            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7FtT4DACU0BNoIMN4Be3kCIvQjvKs4ESeoqG4L/Qex1VT0ab3a0td3S0/coYJWHctE+ZRPpxYOXY9+bJIZURxhILEoIgHe9+eKvwqLsihBPnY0jh8OAMjLaa+nsToKDG8sY7bNK8BOXDUO1TH/Jr8ssh4x/aGrm87OtWnZwpx7XsSrMcxa+HZ2k0VfWEWiU4oYxlrZhgTYk4evQbxbwwRgbsO8bSkMlQdwQJxKTIctAR7Hj6MeMKLOQvaKrjPBkIaQUlby+Vv2O7S6Yh5xG4Zwdw7i2ivvkDl2tx0d/WLyIN9TWqe6mGoMKY4EAP5bEuA/iFXWyHfSI9tf0iNJo7T+1IpyT6uYmdHKUzf0AzCayD14rU/PwRiemFtpALUfKJTjjpUpIx5dN80wfFR7aS5x0jHIwP1meoYjnROzynSJNMOA4PbMzTO5lN/JPxUcefdBhPnUUJ3zlmWcELf6UufjgironXeq9EDQEwmmakLCRVfKVhCcMV9vw89tMMw+QKVc7YVFEOoDZt96TCkFWOL3VLHCKf8J5u0UYGU4ebCiz4quxx391YruEOD2IClvQMs81p/6aJOu3WSvMdlIKRbCsaZ/gYSzXIR6m6dnX6zAoK2x94jcIpkLAg8q49/BSe33p9kpoKwVkllILYt8k2Cx+96OUl//AyFOWOVZkYNDw== harshana@iRocket"
         },
         "mongoServerAdminUserName": {
             "value": "oxamongoadmin"
@@ -75,7 +75,7 @@
             "value": 1
         },
         "oxaToolsGithubAccountName": {
-            "value": "Microsoft"
+            "value": "devsmart"
         },
         "oxaToolsGithubProjectName": {
             "value": "oxa-tools"
@@ -84,7 +84,7 @@
             "value": "oxa/master.fic"
         },
         "edxConfigurationGithubAccountName": {
-            "value": "Microsoft"
+            "value": "devsmart"
         },
         "edxConfigurationGithubProjectName": {
             "value": "edx-configuration"
@@ -93,7 +93,7 @@
             "value": "oxa/master.fic"
         },
         "edxPlatformGithubAccountName": {
-            "value": "microsoft"
+            "value": "devsmart"
         },
         "edxPlatformGithubProjectName": {
             "value": "edx-platform"
@@ -102,7 +102,7 @@
             "value": "oxa/master.fic"
         },
         "edxThemeGithubAccountName": {
-            "value": "microsoft"
+            "value": "devsmart"
         },
         "edxThemeGithubProjectName": {
             "value": "edx-theme"
@@ -254,7 +254,7 @@
             "value": ""
         },
         "baseDomain": {
-            "value": "{CLUSTERNAME}-tm.trafficmanager.net"
+            "value": "M365Training.social27.com"
         },
         "domainSeparator": {
             "value": "-"

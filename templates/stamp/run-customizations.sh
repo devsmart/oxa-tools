@@ -18,23 +18,23 @@ CRONTAB_INTERVAL_MINUTES=5
 
 # Oxa Tools Github configs
 OXA_TOOLS_PUBLIC_GITHUB_PROJECTNAME="oxa-tools"
-OXA_TOOLS_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+OXA_TOOLS_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 OXA_TOOLS_PUBLIC_GITHUB_PROJECTBRANCH="master"
 
 # Edx Configuration Github configs
 EDX_CONFIGURATION_PUBLIC_GITHUB_PROJECTNAME="edx-configuration"
-EDX_CONFIGURATION_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_CONFIGURATION_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_CONFIGURATION_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master"
 
 # EdX Platform
 # There are cases where we want to override the edx-platform repository itself
-EDX_PLATFORM_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_PLATFORM_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_PLATFORM_PUBLIC_GITHUB_PROJECTNAME="edx-platform"
 EDX_PLATFORM_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master"
 
 # EdX Theme
 # There are cases where we want to override the edx-platform repository itself
-EDX_THEME_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_THEME_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_THEME_PUBLIC_GITHUB_PROJECTNAME="edx-theme"
 EDX_THEME_PUBLIC_GITHUB_PROJECTBRANCH="pilot"
 
@@ -506,16 +506,13 @@ persist_deployment_time_values()
     sed -i "s#^MYSQL_REPL_USER=.*#MYSQL_REPL_USER=${MYSQL_REPL_USER}#I" $config_file
     sed -i "s#^MYSQL_REPL_USER_PASSWORD=.*#MYSQL_REPL_USER_PASSWORD=${MYSQL_REPL_USER_PASSWORD}#I" $config_file
 
-    if [ ! -z ${DOMAIN_OVERRIDE} ]; 
-    then
-        log "Overriding the base url"
-        sed -i "s#^BASE_URL=.*#BASE_URL=${DOMAIN_OVERRIDE}#I" $config_file
-        sed -i "s#^LMS_URL=.*#LMS_URL=lms${DOMAIN_SEPARATOR}${DOMAIN_OVERRIDE}#I" $config_file
-        sed -i "s#^CMS_URL=.*#CMS_URL=cms${DOMAIN_SEPARATOR}${DOMAIN_OVERRIDE}#I" $config_file
-        sed -i "s#^PREVIEW_URL=.*#PREVIEW_URL=preview${DOMAIN_SEPARATOR}${DOMAIN_OVERRIDE}#I" $config_file
-    else
-        log "Domain override not specified"
-    fi
+    
+    log "Overriding the base url"
+    sed -i "s#^BASE_URL=.*#BASE_URL=M365Training.social27.com#I" $config_file
+    sed -i "s#^LMS_URL=.*#LMS_URL=M365Training.social27.com#I" $config_file
+    sed -i "s#^CMS_URL=.*#CMS_URL=M365Training-cms.social27.com#I" $config_file
+    sed -i "s#^PREVIEW_URL=.*#PREVIEW_URL=M365Training-preview.social27.com#I" $config_file
+    
 
     # check for MemCache Server Override
     if [[ ! -z ${MEMCACHE_SERVER} ]];
@@ -699,14 +696,14 @@ then
     # Setup mysql backup
     DATABASE_TYPE_TO_BACKUP="mysql"
     DATABASE_BACKUP_LOG="/var/log/db_backup_${DATABASE_TYPE_TO_BACKUP}.log"
-    setup_backup "${INSTALLER_BASEPATH}/backup_configuration_${DATABASE_TYPE_TO_BACKUP}.sh" "${DATABASE_BACKUP_SCRIPT}" "${DATABASE_BACKUP_LOG}" "${BACKUP_STORAGEACCOUNT_NAME}" "${BACKUP_STORAGEACCOUNT_KEY}" "${MYSQL_BACKUP_FREQUENCY}" "${MYSQL_BACKUP_RETENTIONDAYS}" "${MONGO_REPLICASET_CONNECTIONSTRING}" "${MYSQL_SERVER_LIST}" "${DATABASE_TYPE_TO_BACKUP}" "${MYSQL_ADMIN_USER}" "${MYSQL_ADMIN_PASSWORD}" "${BACKUP_LOCAL_PATH}" "${MYSQL_TEMP_USER}" "${MYSQL_TEMP_PASSWORD}"
-    exit_on_error "Failed setting up the Mysql Database backup" 1 "${MAIL_SUBJECT} Failed" $CLUSTER_ADMIN_EMAIL $PRIMARY_LOG $SECONDARY_LOG
+  #  setup_backup "${INSTALLER_BASEPATH}/backup_configuration_${DATABASE_TYPE_TO_BACKUP}.sh" "${DATABASE_BACKUP_SCRIPT}" "${DATABASE_BACKUP_LOG}" "${BACKUP_STORAGEACCOUNT_NAME}" "${BACKUP_STORAGEACCOUNT_KEY}" "${MYSQL_BACKUP_FREQUENCY}" "${MYSQL_BACKUP_RETENTIONDAYS}" "${MONGO_REPLICASET_CONNECTIONSTRING}" "${MYSQL_SERVER_LIST}" "${DATABASE_TYPE_TO_BACKUP}" "${MYSQL_ADMIN_USER}" "${MYSQL_ADMIN_PASSWORD}" "${BACKUP_LOCAL_PATH}" "${MYSQL_TEMP_USER}" "${MYSQL_TEMP_PASSWORD}"
+  #  exit_on_error "Failed setting up the Mysql Database backup" 1 "${MAIL_SUBJECT} Failed" $CLUSTER_ADMIN_EMAIL $PRIMARY_LOG $SECONDARY_LOG
 
     # Setup mongo backup
     DATABASE_TYPE_TO_BACKUP="mongo"
     DATABASE_BACKUP_LOG="/var/log/db_backup_${DATABASE_TYPE_TO_BACKUP}.log"
-    setup_backup "${INSTALLER_BASEPATH}/backup_configuration_${DATABASE_TYPE_TO_BACKUP}.sh" "${DATABASE_BACKUP_SCRIPT}" "${DATABASE_BACKUP_LOG}" "${BACKUP_STORAGEACCOUNT_NAME}" "${BACKUP_STORAGEACCOUNT_KEY}" "${MONGO_BACKUP_FREQUENCY}" "${MONGO_BACKUP_RETENTIONDAYS}" "${MONGO_REPLICASET_CONNECTIONSTRING}" "${MYSQL_SERVER_LIST}" "${DATABASE_TYPE_TO_BACKUP}" "${MONGO_USER}" "${MONGO_PASSWORD}" "${BACKUP_LOCAL_PATH}" "${MONGO_USER}" "${MONGO_PASSWORD}"
-    exit_on_error "Failed setting up the Mongo Database backup" 1 "${MAIL_SUBJECT} Failed" $CLUSTER_ADMIN_EMAIL $PRIMARY_LOG $SECONDARY_LOG
+  #  setup_backup "${INSTALLER_BASEPATH}/backup_configuration_${DATABASE_TYPE_TO_BACKUP}.sh" "${DATABASE_BACKUP_SCRIPT}" "${DATABASE_BACKUP_LOG}" "${BACKUP_STORAGEACCOUNT_NAME}" "${BACKUP_STORAGEACCOUNT_KEY}" "${MONGO_BACKUP_FREQUENCY}" "${MONGO_BACKUP_RETENTIONDAYS}" "${MONGO_REPLICASET_CONNECTIONSTRING}" "${MYSQL_SERVER_LIST}" "${DATABASE_TYPE_TO_BACKUP}" "${MONGO_USER}" "${MONGO_PASSWORD}" "${BACKUP_LOCAL_PATH}" "${MONGO_USER}" "${MONGO_PASSWORD}"
+  #  exit_on_error "Failed setting up the Mongo Database backup" 1 "${MAIL_SUBJECT} Failed" $CLUSTER_ADMIN_EMAIL $PRIMARY_LOG $SECONDARY_LOG
 fi
 
 #####################################

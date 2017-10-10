@@ -13,7 +13,7 @@ TARGET_FILE=""
 
 # Oxa Tools
 # Settings for the OXA-Tools public repository 
-OXA_TOOLS_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+OXA_TOOLS_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 OXA_TOOLS_PUBLIC_GITHUB_PROJECTNAME="oxa-tools"
 OXA_TOOLS_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master.fic"
 
@@ -22,7 +22,7 @@ OXA_TOOLS_VERSION=""
 
 # EdX Configuration
 # There are cases where we want to override the edx-configuration repository itself
-EDX_CONFIGURATION_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_CONFIGURATION_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_CONFIGURATION_PUBLIC_GITHUB_PROJECTNAME="edx-configuration"
 EDX_CONFIGURATION_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master.fic"
 
@@ -31,13 +31,13 @@ CONFIGURATION_VERSION=""
 
 # EdX Platform
 # There are cases where we want to override the edx-platform repository itself
-EDX_PLATFORM_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_PLATFORM_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_PLATFORM_PUBLIC_GITHUB_PROJECTNAME="edx-platform"
 EDX_PLATFORM_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master.fic"
 
 # EdX Theme
 # There are cases where we want to override the edx-platform repository itself
-EDX_THEME_PUBLIC_GITHUB_ACCOUNTNAME="Microsoft"
+EDX_THEME_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
 EDX_THEME_PUBLIC_GITHUB_PROJECTNAME="edx-theme"
 EDX_THEME_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master.fic"
 EDX_THEME_NAME="default"
@@ -378,8 +378,8 @@ update_stamp_jb()
     SUBJECT="${MAIL_SUBJECT} - EdX Database (Mysql) Setup Failed"
 
     # edx playbooks - mysql and memcached
-    $ANSIBLE_PLAYBOOK -i $MYSQL_MASTER_IP, $OXA_SSH_ARGS -e@$OXA_PLAYBOOK_CONFIG edx_mysql.yml
-    exit_on_error "Execution of edX MySQL playbook failed (Stamp JB)" 1 "${SUBJECT}" "${CLUSTER_ADMIN_EMAIL}" "${PRIMARY_LOG}" "${SECONDARY_LOG}"
+    #$ANSIBLE_PLAYBOOK -i $MYSQL_MASTER_IP, $OXA_SSH_ARGS -e@$OXA_PLAYBOOK_CONFIG edx_mysql.yml
+    #exit_on_error "Execution of edX MySQL playbook failed (Stamp JB)" 1 "${SUBJECT}" "${CLUSTER_ADMIN_EMAIL}" "${PRIMARY_LOG}" "${SECONDARY_LOG}"
 
     # minimize tags? "install:base,install:system-requirements,install:configuration,install:app-requirements,install:code"
     $ANSIBLE_PLAYBOOK -i localhost, -c local -e@$OXA_PLAYBOOK_CONFIG edx_sandbox.yml -e "migrate_db=yes" --tags "edxapp-sandbox,install,migrate"
@@ -392,12 +392,14 @@ update_stamp_jb()
     $ANSIBLE_PLAYBOOK -i localhost, -c local -e@$OXA_PLAYBOOK_CONFIG $OXA_PLAYBOOK_ARGS $OXA_PLAYBOOK --tags "mysql"
     exit_on_error "Execution of OXA MySQL playbook failed" 1 "${SUBJECT}" "${CLUSTER_ADMIN_EMAIL}" "${PRIMARY_LOG}" "${SECONDARY_LOG}"
 
+    log "Installing alternate Memcache"
+    $ANSIBLE_PLAYBOOK -i $MEMCACHE_SERVER_IP, $OXA_SSH_ARGS -e@$OXA_PLAYBOOK_CONFIG $OXA_PLAYBOOK_ARGS $OXA_PLAYBOOK --tags "memcached"
     # if the Memcache Server is different than the Mysql Master server, we have to install memcache with default configs
     if [ "$MEMCACHE_SERVER_IP" != "$MYSQL_MASTER_IP" ];
     then
-        log "Installing alternate Memcache"
-        $ANSIBLE_PLAYBOOK -i $MEMCACHE_SERVER_IP, $OXA_SSH_ARGS -e@$OXA_PLAYBOOK_CONFIG $OXA_PLAYBOOK_ARGS $OXA_PLAYBOOK --tags "memcached"
-        exit_on_error "Execution of OXA alternate memcache playbook task failed" 1 "${SUBJECT}" "${CLUSTER_ADMIN_EMAIL}" "${PRIMARY_LOG}" "${SECONDARY_LOG}"
+        #log "Installing alternate Memcache"
+        #$ANSIBLE_PLAYBOOK -i $MEMCACHE_SERVER_IP, $OXA_SSH_ARGS -e@$OXA_PLAYBOOK_CONFIG $OXA_PLAYBOOK_ARGS $OXA_PLAYBOOK --tags "memcached"
+        #exit_on_error "Execution of OXA alternate memcache playbook task failed" 1 "${SUBJECT}" "${CLUSTER_ADMIN_EMAIL}" "${PRIMARY_LOG}" "${SECONDARY_LOG}"
     fi
 }
 

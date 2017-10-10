@@ -124,7 +124,7 @@ Param(
 
         [Parameter(Mandatory=$false)][string]$ServiceAccountPassword="5QFrMCIKJaVazBWisd0fMJR",
 
-        [Parameter(Mandatory=$false)][string]$PlatformName="Contoso Learning",
+        [Parameter(Mandatory=$false)][string]$PlatformName="Microsoft 365 Training",
         [Parameter(Mandatory=$false)][string]$PlatformEmailAddress="",
 
         [Parameter(Mandatory=$false)][string]$EdxAppSuperUserName="edxappadmin",
@@ -132,7 +132,7 @@ Param(
         [Parameter(Mandatory=$false)][string]$EdxAppSuperUserEmail="",
 
         [Parameter(Mandatory=$false)][string][ValidateSet("1","2")]$AzureCliVersion="1",
-        [Parameter(Mandatory=$false)][string]$MemcacheServer="10.0.0.16",
+        [Parameter(Mandatory=$false)][string]$MemcacheServer="10.0.0.4",
 
         [Parameter(Mandatory=$false)][string]$DeploymentVersionId="",
 

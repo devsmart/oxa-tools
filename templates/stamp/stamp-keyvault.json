@@ -6,6 +6,14 @@
             "type": "string",
             "maxLength": 12
         },
+        "virtualNetworkName": {
+            "type": "string",
+            "defaultValue": "SNL-PROD"
+        },
+        "subNetName": {
+            "type": "string",
+            "defaultValue": "default"
+        },
         "clusterNameDomainName": {
             "type": "string"
         },
@@ -676,8 +684,8 @@
         "storageContainer": "[concat('https://', variables('storageAccountName'),'.blob.core.windows.net/vhds/')]",
 
         "loadBalancerName": "[concat(parameters('clusterName'), '-lb-', parameters('deploymentSlot'))]",
-        "virtualNetworkName": "[concat(parameters('clusterName'), '-vnet')]",
-        "subnetName": "[concat(parameters('clusterName'), '-subnet')]",
+        "virtualNetworkName": "[parameters('virtualNetworkName')]", 
+        "subnetName": "[parameters('subNetName')]",
         "bePoolName": "[concat(parameters('clusterName'), '-bepool-', parameters('deploymentSlot'))]",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "lbID": "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName'))]",
