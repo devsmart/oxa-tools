@@ -31,6 +31,14 @@
             "metadata": {
                 "Description": "Custom settings object"
             }
+        },
+        "virtualNetworkName": {
+            "type": "string",
+            "value": "SNL-PROD"
+        },
+        "subnetName": {
+            "type": "string",
+            "value": "default"
         }
     },
 
@@ -52,7 +60,9 @@
             "[concat(variables('newStorageAccountSuffix'), '3')]",
             "[concat(variables('newStorageAccountSuffix'), '4')]"
         ],
-        "frontendVmStorageAccountCount": "[length(variables('uniqueStringArray'))]"
+        "frontendVmStorageAccountCount": "[length(variables('uniqueStringArray'))]",
+        "vnetId": "[resourceId('OpenedX','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
 
     "resources": [
@@ -396,7 +406,7 @@
                                             "name": "[concat(parameters('networkSettings').clusterVirtualMachineScaleSetName, parameters('networkSettings').ipConfigSuffix)]",
                                             "properties": {
                                                 "subnet": {
-                                                    "id": "[parameters('networkSettings').subnetRef]"
+                                                    "id": "[variables('subnetRef')]"
                                                 },
                                                 "loadBalancerBackendAddressPools": [
                                                     {

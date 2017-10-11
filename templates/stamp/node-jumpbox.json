@@ -33,7 +33,19 @@
             "metadata": {
                 "Description": "Custom settings object"
             }
+        },
+        "virtualNetworkName": {
+            "type": "string",
+            "value": "SNL-PROD"
+        },
+        "subnetName": {
+            "type": "string",
+            "value": "default"
         }
+    },
+    "variables": {
+        "vnetId": "[resourceId('OpenedX','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
     "resources": [
         {
@@ -87,7 +99,7 @@
                         "name": "ipconfig1",
                         "properties": {
                             "subnet": {
-                                "id": "[parameters('networkSettings').subnetRef]"
+                                "id": "[variables('subnetRef')]"
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
