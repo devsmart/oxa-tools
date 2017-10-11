@@ -36,11 +36,11 @@
         },
         "virtualNetworkName": {
             "type": "string",
-            "value": "SNL-PROD"
+            "defaultValue": "SNL-PROD"
         },
         "subnetName": {
             "type": "string",
-            "value": "default"
+            "defaultValue": "default"
         }
     },
     "variables": {
