@@ -612,7 +612,7 @@
         },
         "edxPlatformName": {
             "type": "string",
-            "defaultValue": "Contoso Learning",
+            "defaultValue": "Microsoft 365 Training",
             "metadata": {
                 "description": "Name used to identify the application"
             }
