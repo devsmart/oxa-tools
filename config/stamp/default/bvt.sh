@@ -76,7 +76,7 @@ MONGO_REPLICASET_NAME=rs0
 MONGO_INSTALLER_SCRIPT=mongodb-ubuntu-install.sh
 MONGO_INSTALLER_BASE_URL=http://repo.mongodb.org/apt/ubuntu
 MONGO_INSTALLER_PACKAGE_NAME=mongodb-org
-MONGO_SERVER_IP_PREFIX=10.0.0.
+MONGO_SERVER_IP_PREFIX=s27mongodb01r.social27.com:27017,S27MongoDB02R.social27.com:27017,s27mongoarb01r.social27.com:27017
 MONGO_SERVER_IP_OFFSET=10
 MONGO_SERVER_LIST=s27mongodb01r.social27.com,S27MongoDB02R.social27.com,s27mongoarb01r.social27.com
 
