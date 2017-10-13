@@ -30,9 +30,10 @@ ADMIN_USER=oxaadmin
 OXA_TOOLS_VERSION=oxa/master.fic
 
 # config/server-vars.yml
-#YOUTUBE_API_KEY=todo
-PLATFORM_NAME=
-PLATFORM_EMAIL=
+YOUTUBE_API_KEY=AIzaSyBz5yp69KvzArILwNMPJERXC7p7yq--1rM
+PLATFORM_NAME=M365Training
+PLATFORM_EMAIL=wmharshana@gmail.com
+
 
 # config/versions.yml
 CONFIGURATION_REPO=https://github.com/devsmart/edx-configuration.git
