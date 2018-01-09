@@ -40,8 +40,8 @@ CONFIGURATION_REPO=https://github.com/devsmart/edx-configuration.git
 CONFIGURATION_VERSION=oxa/master.fic
 PLATFORM_REPO=https://github.com/devsmart/edx-platform.git
 PLATFORM_VERSION=oxa/master.fic
-THEME_REPO=https://github.com/devsmart/edx-theme.git
-THEME_VERSION=oxa/master.fic
+THEME_REPO=https://github.com/devsmart/edx-theme-m365.git
+THEME_VERSION=master
 EDX_VERSION=open-release/ficus.master
 FORUM_VERSION=open-release/ficus.master
 
