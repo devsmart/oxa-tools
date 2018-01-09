@@ -105,10 +105,10 @@
             "value": "devsmart"
         },
         "edxThemeGithubProjectName": {
-            "value": "edx-theme"
+            "value": "edx-theme-m365"
         },
         "edxThemeGithubBranch": {
-            "value": "oxa/master.fic"
+            "value": "master"
         },
         "ansibleGithubAccountName": {
             "value": "edx"
@@ -239,13 +239,13 @@
             "value": false
         },
         "enableComprehensiveTheming": {
-            "value": false
+            "value": true
         },
         "comprehensiveThemingDirectory": {
-            "value": ""
+            "value": "/edx/app/edxapp/themes"
         },
         "comprehensiveThemingName": {
-            "value": ""
+            "value": "m365"
         },
         "enableThirdPartyAuth": {
             "value": false
