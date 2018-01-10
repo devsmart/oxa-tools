@@ -38,9 +38,9 @@ EDX_PLATFORM_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master.fic"
 # EdX Theme
 # There are cases where we want to override the edx-platform repository itself
 EDX_THEME_PUBLIC_GITHUB_ACCOUNTNAME="devsmart"
-EDX_THEME_PUBLIC_GITHUB_PROJECTNAME="edx-theme-m365"
-EDX_THEME_PUBLIC_GITHUB_PROJECTBRANCH="master"
-EDX_THEME_NAME="m365"
+EDX_THEME_PUBLIC_GITHUB_PROJECTNAME="edx-theme"
+EDX_THEME_PUBLIC_GITHUB_PROJECTBRANCH="oxa/master.fic"
+EDX_THEME_NAME="default"
 
 # EdX Ansible
 # There are cases where we want to override the edx\ansible repository itself
